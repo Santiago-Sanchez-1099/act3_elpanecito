@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- Fila en editar -->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Categoria</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"> <!-- La tarjeta -->
+            <div class="card-body">
+              <form action="/editarCategoria/" method="POST"> {% csrf_token %}
+
+                <div class="form-group py-3">
+                    <input type="text" id="num_id_categoria" name="num_id_categoria" class="form-control" placeholder="ID categoria" value="{{ miscategorias.id_categoria }}" readonly>
+                </div>
+      <div class="form-group">
+          <input type="text" id="txt_nombre_categoria" name="txt_nombre_categoria" class="form-control" value="{{miscategorias.nombre_categoria}}" maxlenght="50" required><br>
+      </div>
+      <div class="form-group">
+        <input type="text" id="txt_descripcion" name="txt_descripcion" class="form-control" value="{{miscategorias.descripcion}}" maxlenght="100" required><br>
+    </div>
+    <div class="form-group">
+        <input type="text" id="txt_estado" name="txt_estado" class="form-control" value="{{miscategorias.estado}}" maxlenght="20" required><br>
+    </div>
+    <div class="form-group">
+        <input type="text" id="txt_tipo" name="txt_tipo" class="form-control" value="{{miscategorias.tipo}}" maxlenght="20" required><br>
+    </div>
+    <div class="form-group">
+        <input type="date" id="date_fecha_creacion" name="date_fecha_creacion" class="form-control" value="{{miscategorias.fecha_creacion}}" required><br>
+    </div>
+      <div class="form-group">
+          <input type="text" id="num_id_usuario" name="num_id_usuario" class="form-control" value="{{miscategorias.id_usuario}}" minlength="1" maxlenght="11" required><br>
+      </div>
+      <div class="form-group py-2">
+        <button type="submit" class="btn btn-primary">Guardar Materia</button>
+      </div>
+              </form>
+            </div>
+          </div>
+        <!-- Aqui codigo tarjeta -->
+    </div>
+</div><!-- Fila en editar -->
+
+{% endblock %}

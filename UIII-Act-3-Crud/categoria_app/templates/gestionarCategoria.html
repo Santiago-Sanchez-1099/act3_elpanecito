@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!--La fila-->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!--Columna izquierda-->
+        <h1>Registrar Categoria</h1>
+        <div class="card"> <!-- La tarjeta -->
+  <div class="card-body">
+    <form action="registrarCategoria/" method="POST"> {% csrf_token %}
+
+
+
+
+      <div class="form-group">
+          <input type="text" id="num_id_categoria" name="num_id_categoria" class="form-control" placeholder="ID categoria" minlength="1" maxlenght="11" required><br>
+      </div>
+      <div class="form-group">
+          <input type="text" id="txt_nombre_categoria" name="txt_nombre_categoria" class="form-control" placeholder="Nombre de categoria" maxlenght="50" required><br>
+      </div>
+      <div class="form-group">
+        <input type="text" id="txt_descripcion" name="txt_descripcion" class="form-control" placeholder="Descripcion de categoria" maxlenght="100" required><br>
+    </div>
+    <div class="form-group">
+        <input type="text" id="txt_estado" name="txt_estado" class="form-control" placeholder="Estado de categoria" maxlenght="20" required><br>
+    </div>
+    <div class="form-group">
+        <input type="text" id="txt_tipo" name="txt_tipo" class="form-control" placeholder="Tipo de categoria" maxlenght="20" required><br>
+    </div>
+    <div class="form-group">
+        <input type="date" id="date_fecha_creacion" name="date_fecha_creacion" class="form-control" placeholder="Fecha de creacion de categoria" required><br>
+    </div>
+      <div class="form-group">
+          <input type="text" id="num_id_usuario" name="num_id_usuario" class="form-control" placeholder="ID usuario" minlength="1" maxlenght="11" required><br>
+      </div>
+      <div class="form-group py-2">
+        <button type="submit" class="btn btn-primary">Guardar Categoria</button>
+      </div>
+
+
+
+
+
+    </form>
+  </div>
+</div>
+    </div><!--Columna izquierda-->
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!--Columna derecha-->
+        <h1>Listado de categorias</h1>
+        <!--Tablas-->
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID categoria</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Fecha de creacion</th>
+            <th scope="col">ID usuario</th>
+            <th> Opciones </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in miscategorias %}
+          <tr>
+            <td> {{c.id_categoria}}</td>
+            <td> {{c.nombre_categoria}}</td>
+            <td> {{c.descripcion}}</td>
+            <td> {{c.estado}}</td>
+            <td> {{c.tipo}}</td>
+            <td> {{c.fecha_creacion}}</td>
+            <td> {{c.id_usuario}}</td>
+
+            <td> <a href="seleccionarCategoria/{{c.id_categoria}}" class="btn btn-info"> Editar</a></td>
+            <td> <a href="borrarCategoria/{{c.id_categoria}}" class="btn btn-danger"> Borrar</a></td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <!--Tabla-->
+    </div><!--Columna derecha-->
+    
+</div><!--La fila-->
+
+{% endblock %}
